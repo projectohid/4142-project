@@ -1,176 +1,60 @@
-\# 🧠 EEG Signal Processing and Feature Extraction for Seizure Detection
+# EEG Signal Analysis using Digital Signal Processing Techniques
 
-
-
-\## 📘 Overview
-
-This project demonstrates the application of \*\*Digital Signal Processing (DSP)\*\* techniques for \*\*EEG-based epileptic seizure detection\*\* using the \*\*CHB-MIT Scalp EEG Database\*\*.  
-
-It bridges classical DSP methods—filtering, convolution, correlation, and spectral analysis—with modern biomedical signal analysis in Python.
-
-
-
-The work was developed as part of the \*\*EE 4135: Digital Signal Processing Laboratory\*\* course.
-
-
+## 📘 Overview
+This project applies **Digital Signal Processing (DSP)** techniques to analyze and interpret **Electroencephalogram (EEG)** signals, focusing on the detection and characterization of **epileptic seizure activity**.  
+It demonstrates how classical DSP methods such as filtering, Fourier Transform, Power Spectral Density (PSD), entropy, and correlation analysis can be systematically applied to biomedical data for meaningful interpretation and feature extraction.
 
 ---
 
-
-
-\## 🎯 Objectives
-
-\- Apply core DSP concepts (FFT, FIR/IIR filtering, correlation, convolution) to EEG signals.  
-
-\- Develop a \*\*preprocessing pipeline\*\* for noise removal and signal standardization.  
-
-\- Extract \*\*spectral, statistical, and nonlinear features\*\* relevant to seizure detection.  
-
-\- Prepare features for \*\*machine learning and neural network models\*\*.
-
-
+## 🎯 Objectives
+- To preprocess EEG signals using DSP filters for noise and artifact removal.  
+- To perform frequency-domain analysis using FFT and PSD.  
+- To extract statistical and nonlinear features (kurtosis, skewness, entropy).  
+- To compare normal and seizure EEG patterns through visualization and quantitative metrics.  
+- To establish DSP-based features as a foundation for machine learning–driven seizure detection.
 
 ---
 
+## 🧠 Methodology
+1. **Data Acquisition:**  
+   EEG datasets containing normal and seizure segments were used for analysis.  
 
+2. **Preprocessing:**  
+   - Notch filter at 60 Hz to remove powerline interference.  
+   - FIR bandpass filter (0.5–70 Hz) to isolate relevant brainwave frequencies.  
 
-\## 🧩 Methodology
+3. **Spectral Analysis:**  
+   - Fast Fourier Transform (FFT) and Power Spectral Density (PSD) estimation.  
+   - Spectrograms to visualize time–frequency energy distribution.  
 
+4. **Feature Extraction:**  
+   - Time-domain: Mean, variance, skewness, kurtosis.  
+   - Frequency-domain: Band power across δ, θ, α, β, γ bands.  
+   - Nonlinear: Spectral entropy, inter-channel correlation coefficients.  
 
-
-\### 1. Data Acquisition
-
-\- Dataset: \[CHB-MIT Scalp EEG Database](https://physionet.org/content/chbmit/1.0.0/)
-
-\- Format: EDF (European Data Format)
-
-\- Each file contains multi-channel EEG recordings from pediatric epilepsy patients.
-
-
-
-\### 2. Preprocessing Pipeline
-
-| Step | Description |
-
-|------|--------------|
-
-| \*\*Notch Filtering\*\* | Removes 60 Hz powerline interference using IIR filter. |
-
-| \*\*Bandpass Filtering\*\* | FIR filter (0.5–70 Hz) isolates standard EEG frequency range. |
-
-| \*\*Segmentation\*\* | EEG divided into overlapping 10-second epochs. |
-
-| \*\*Normalization\*\* | Z-score standardization (zero mean, unit variance). |
-
-
-
-\### 3. DSP Operations
-
-\- \*\*Correlation Analysis:\*\* Inter-channel Pearson correlation to measure spatial dependencies.  
-
-\- \*\*Convolution Smoothing:\*\* Moving average for temporal smoothing.  
-
-\- \*\*Spectral Analysis:\*\* FFT \& Welch PSD for frequency-domain analysis.  
-
-\- \*\*Feature Extraction:\*\* Band power, spectral entropy, skewness, kurtosis, correlation metrics, and band ratios.
-
-
-
-\### 4. Implementation
-
-\- Environment: \*\*Python 3.10\*\*, \*\*Jupyter Notebook\*\*
-
-\- Libraries: `mne`, `numpy`, `scipy`, `pandas`, `matplotlib`
-
-\- Output: `chb\_features.csv` — structured feature matrix (30+ features per epoch).
-
-
+5. **Visualization:**  
+   Multiple plots illustrate raw and filtered signals, frequency spectra, spectrograms, entropy–power relationships, and correlation feature trends.
 
 ---
 
-
-
-\## 📊 Results Summary
-
-
-
-| Analysis Domain | Key Observation | DSP Technique |
-
-|------------------|-----------------|----------------|
-
-| \*\*Spectrograms\*\* | Low-frequency dominance in seizure epochs | STFT / Spectrogram |
-
-| \*\*Filtering\*\* | 60 Hz noise \& drift removed | Notch + FIR Bandpass |
-
-| \*\*Band Power\*\* | High Δ, θ power; reduced α, β, γ | FFT + PSD |
-
-| \*\*Statistics\*\* | High kurtosis, low skewness | Time-domain analysis |
-
-| \*\*Entropy\*\* | Negatively correlated with Δ power | Spectral Entropy |
-
-| \*\*Correlation\*\* | High inter-channel synchronization | Pearson Correlation |
-
-
+## 📊 Results Summary
+- Filtering successfully removed baseline drift and 60 Hz noise while retaining physiological EEG components.  
+- FFT and PSD analyses revealed low-frequency dominance (0–10 Hz) during seizures.  
+- Entropy analysis showed decreased complexity and higher synchronization in seizure states.  
+- Correlation plots indicated strong inter-channel coherence during epileptic episodes.  
+- Extracted features demonstrated clear separation between normal and seizure EEG signals.
 
 ---
 
-
-
-\## 🧠 Key Findings
-
-\- Clean EEG signals achieved via notch and FIR bandpass filtering.  
-
-\- Clear spectral distinction between \*\*normal\*\* and \*\*seizure\*\* states.  
-
-\- Statistical and nonlinear features (kurtosis, entropy) capture seizure morphology.  
-
-\- Strong spatial coupling across channels during seizures.  
-
-\- Extracted features are \*\*ML-ready\*\* for classification and real-time detection.
-
-
+## 🧩 Discussion & Conclusion
+The results confirm that DSP provides an effective, interpretable framework for EEG signal analysis.  
+Filtering, spectral decomposition, and feature extraction jointly reveal both **temporal** and **spectral** characteristics of seizure activity.  
+The extracted DSP-based features are physiologically meaningful and ready for integration into **machine learning** models for automated seizure detection.
 
 ---
 
-
-
-\## 🚀 Future Work
-
-\- Integrate \*\*wavelet-based filtering\*\* for adaptive noise suppression.  
-
-\- Apply \*\*Independent Component Analysis (ICA)\*\* for artifact rejection.  
-
-\- Train \*\*deep learning models\*\* (CNN, LSTM) on DSP-derived features.  
-
-\- Develop a \*\*real-time seizure detection\*\* pipeline.
-
-
-
----
-
-
-
-\## 📁 Repository Structure
-
-
-
----
-
-
-
-\## ⚙️ Installation \& Usage
-
-
-
-\### Clone the Repository
+## 🧰 Requirements
+To run the code, ensure the following dependencies are installed:
 
 ```bash
-
-git clone https://github.com/projectohid/4142-project.git
-
-cd 4142-project
-
-
-
-
-
+pip install numpy scipy matplotlib pandas
