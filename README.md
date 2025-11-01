@@ -57,4 +57,4 @@ The extracted DSP-based features are physiologically meaningful and ready for in
 To run the code, ensure the following dependencies are installed:
 
 ```bash
-pip install numpy scipy matplotlib pandas
+pip install -r requirements.txt
